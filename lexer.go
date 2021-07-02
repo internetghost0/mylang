@@ -26,11 +26,14 @@ func (l *Lexer) advance() {
 
 func (l *Lexer) makeTokens() (error, []Token) {
 	var tokens []Token
-	chr := l.currentChar
+
 	for l.currentChar != 0 {
+		chr := l.currentChar
 		switch {
 		case chr == ' ':
+			l.advance()
 		case chr == '\t':
+			l.advance()
 		case chr == '\n':
 			l.advance()
 		case unicode.IsDigit(rune(chr)):
@@ -39,12 +42,12 @@ func (l *Lexer) makeTokens() (error, []Token) {
 				return err, []Token{}
 			}
 			tokens = append(tokens, token)
-			l.advance()
+			//l.advance()
 		case chr == '+':
 			tokens = append(tokens, Token{_TT_PLUS, "+"})
 			l.advance()
 		case chr == '-':
-			tokens = append(tokens, Token{_TT_MINUS, "+"})
+			tokens = append(tokens, Token{_TT_MINUS, "-"})
 			l.advance()
 		case chr == '*':
 			tokens = append(tokens, Token{_TT_MUL, "*"})
@@ -70,7 +73,7 @@ func (l *Lexer) makeNumber() (error, Token) {
 	dotCount := 0
 	for l.currentChar != 0 && (unicode.IsDigit(rune(l.currentChar)) || l.currentChar == '.') {
 		if l.currentChar == '.' {
-			if dotCount == 1 {
+			if dotCount >= 1 {
 				return errors.New("More than one dot in the number"), Token{_TT_ERROR, ""}
 			}
 			dotCount += 1

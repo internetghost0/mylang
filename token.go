@@ -3,7 +3,8 @@ package main
 type tokenType uint8
 
 const (
-	_TT_INT tokenType = 1
+	_TT_ERROR tokenType = 0
+	_TT_INT
 	_TT_FLOAT
 	_TT_PLUS
 	_TT_MINUS
