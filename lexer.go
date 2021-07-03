@@ -24,7 +24,7 @@ func (l *Lexer) advance() {
 	}
 }
 
-func (l *Lexer) makeTokens() (error, []Token) {
+func (l *Lexer) MakeTokens() (error, []Token) {
 	var tokens []Token
 
 	for l.currentChar != 0 {

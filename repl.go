@@ -14,7 +14,7 @@ func REPL() {
 		result, _ := reader.ReadString('\n')
 
 		l := NewLexer(strings.Trim(result, "\n"))
-		err, tokens := l.makeTokens()
+		err, tokens := l.MakeTokens()
 		if err != nil {
 			fmt.Println("Error:", err)
 		} else {
