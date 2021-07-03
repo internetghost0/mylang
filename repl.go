@@ -12,8 +12,11 @@ func REPL() {
 		fmt.Print("> ")
 		reader := bufio.NewReader(os.Stdin)
 		result, _ := reader.ReadString('\n')
-
-		l := NewLexer(strings.Trim(result, "\n"))
+		inputText := strings.Trim(result, "\n")
+		if inputText == ":quit" {
+			break
+		}
+		l := NewLexer(inputText)
 		err, tokens := l.MakeTokens()
 		if err != nil {
 			fmt.Println("Error:", err)
