@@ -22,7 +22,6 @@ func REPL() {
 			for _, token := range tokens {
 				fmt.Print((token.value))
 				fmt.Print(" ")
-				//fmt.Println(token._type == _TT_PLUS)
 			}
 			fmt.Println("]")
 
