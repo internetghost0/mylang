@@ -42,7 +42,6 @@ func (l *Lexer) MakeTokens() (error, []Token) {
 				return err, []Token{}
 			}
 			tokens = append(tokens, token)
-			//l.advance()
 		case chr == '+':
 			tokens = append(tokens, Token{_TT_PLUS, "+"})
 			l.advance()
